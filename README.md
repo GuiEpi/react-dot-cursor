@@ -1,5 +1,5 @@
 <a href="https://react-dot-cursor.guics.st/">
-    <img alt="react-dot-cursor - Try it out" src="https://github.com/timolins/react-dot-cursor/raw/main/website/public/header.svg"/>
+    <img alt="react-dot-cursor - Try it out" src="https://raw.githubusercontent.com/GuiEpi/react-dot-cursor/master/website/public/react-dot-cursor.svg"/>
 </a>
 
 <div align="center">
