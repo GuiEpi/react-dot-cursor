@@ -1,6 +1,6 @@
 {
   "name": "react-dot-cursor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An opinionated cursor component for React.",
   "exports": {
     ".": {
