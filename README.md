@@ -1,6 +1,9 @@
-<a href="https://react-dot-cursor.guics.st/">
-    <img width="200" alt="react-dot-cursor - Try it out" src="https://raw.githubusercontent.com/GuiEpi/react-dot-cursor/refs/heads/main/website/public/react-dot-cursor.svg"/>
-</a>
+
+<div align="center">
+    <a href="https://react-dot-cursor.guics.st/">
+        <img width="200" alt="react-dot-cursor - Try it out" src="https://raw.githubusercontent.com/GuiEpi/react-dot-cursor/refs/heads/main/website/public/react-dot-cursor.svg"/>
+    </a>
+</div>
 
 <div align="center">
     <img src="https://badgen.net/npm/v/react-dot-cursor" alt="NPM Version" />
