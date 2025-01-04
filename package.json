@@ -1,0 +1,55 @@
+{
+  "name": "react-dot-cursor",
+  "version": "0.1.0",
+  "description": "An opinionated cursor component for React.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "main": "index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.tsx --format esm,cjs --dts",
+    "dev": "pnpm --filter website dev",
+    "format": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "motion",
+    "cursor",
+    "custom cursor",
+    "dot cursor",
+    "motion cursor"
+  ],
+  "author": "Guillaume Coussot <guillaume.coussot@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://react-dot-cursor.guics.st/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuiEpi/react-dot-cursor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GuiEpi/react-dot-cursor/issues"
+  },
+  "dependencies": {
+    "motion": "^11.15.0"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "prettier": "^3.4.2",
+    "tsup": "^8.3.5",
+    "typescript": "~5.6.3"
+  }
+}

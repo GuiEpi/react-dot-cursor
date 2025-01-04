@@ -1,0 +1,12 @@
+/* #root { */
+/* margin: 0 auto; */
+/* text-align: center; */
+/* } */
+
+.logo {
+  filter: drop-shadow(0 0 2em #a200ffaa);
+}
+/*
+.read-the-docs {
+  text-decoration: underline;
+} */

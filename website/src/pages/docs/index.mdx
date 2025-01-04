@@ -1,0 +1,39 @@
+# Getting Started
+
+Add a custom animated cursor to your React app with [react-dot-cursor](https://github.com/GuiEpi/react-dot-cursor).
+
+### Install with pnpm
+
+```sh
+pnpm add react-dot-cursor
+```
+
+### Install with NPM
+
+```sh
+npm install react-dot-cursor
+```
+
+## Basic usage
+
+Add the `Cursor` component to your app.
+
+```jsx
+import { Cursor } from 'react-dot-cursor';
+
+const App = () => {
+  return (
+    <div>
+      <Cursor />
+    </div>
+  );
+};
+```
+
+Then remove the default cursor with CSS.
+
+```css
+:root {
+  cursor: none !important;
+}
+```
