@@ -7,7 +7,6 @@
 
 <div align="center">
   <img src="https://img.shields.io/npm/v/react-dot-cursor" alt="NPM Version" />
-  <img src="https://img.shields.io/bundlephobia/minzip/react-dot-cursor" alt="minzipped size"/>
   <!-- <img src="https://github.com/GuiEpi/react-dot-cursor/workflows/CI/badge.svg" alt="Build Status" /> -->
 </div>
 
