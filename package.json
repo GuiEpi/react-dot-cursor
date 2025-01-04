@@ -16,6 +16,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.tsx --format esm,cjs --dts",
+    "build:website": "pnpm --filter website build",
     "dev": "pnpm --filter website dev",
     "format": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -51,5 +52,6 @@
     "prettier": "^3.4.2",
     "tsup": "^8.3.5",
     "typescript": "~5.6.3"
-  }
+  },
+  "packageManager": "pnpm@8.12.1"
 }
