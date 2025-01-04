@@ -21,6 +21,15 @@ const TEXT_ELEMENTS: string[] = [
   'BLOCKQUOTE',
   'CODE',
   'PRE',
+  'STRONG',
+  'B',
+  'I',
+  'EM',
+  'S',
+  'U',
+  'MARK',
+  'Q',
+  'CITE',
 ];
 
 const Cursor: React.FC<CursorProps> = ({ zIndex = 9999 }) => {
