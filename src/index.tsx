@@ -46,18 +46,24 @@ const Cursor: React.FC<CursorProps> = ({ zIndex = 9999 }) => {
       borderRadius: '50%',
       width: 16,
       height: 16,
+      x: '-50%',
+      y: '-50%',
     },
     hover: {
       scale: isClicking ? 0.9 : 1,
       borderRadius: '50%',
       width: 30,
       height: 30,
+      x: '-50%',
+      y: '-50%',
     },
     text: {
       scale: isClicking ? 0.9 : 1,
       width: 3,
       height: fontSize,
       borderRadius: '1rem',
+      x: '-50%',
+      y: '-50%',
     },
     disabled: {
       scale: 1,
@@ -65,6 +71,8 @@ const Cursor: React.FC<CursorProps> = ({ zIndex = 9999 }) => {
       opacity: 0.5,
       width: 12,
       height: 12,
+      x: '-50%',
+      y: '-50%',
     },
   };
 
@@ -78,11 +86,14 @@ const Cursor: React.FC<CursorProps> = ({ zIndex = 9999 }) => {
 
       if (target.hasAttribute('disabled')) {
         setCursorType('disabled');
-      } else if (INTERACTIVE_ELEMENTS.includes(target.tagName)) {
+      }  else if (INTERACTIVE_ELEMENTS.includes(target.tagName) || (target.tagName === 'IMG' && target.closest('A'))) {
         setCursorType('hover');
       } else if (TEXT_ELEMENTS.includes(target.tagName)) {
         setFontSize(parseFloat(getComputedStyle(target).fontSize));
         setCursorType('text');
+      } else if (target.tagName === 'A' && target.querySelector('IMG')) {
+        // fix strange css behavior of images inside links
+        setCursorType('default');
       } else {
         setCursorType('default');
       }
