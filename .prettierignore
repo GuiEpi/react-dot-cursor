@@ -1,5 +1,6 @@
 # Ignore artifacts:
 build
+dist
 
 # Ignore pnpm-lock
 pnpm-lock.yaml
