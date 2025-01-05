@@ -18,7 +18,7 @@ export function Home() {
         <p className="text-lg mb-6 text-center">An opinionated cursor component animated with Motion for React.</p>
         <div className="flex space-x-4 mb-8">
           <Button asChild>
-            <Link to="/docs">Documentation · v0.1.2</Link>
+            <Link to="/docs">Documentation · v0.1.1</Link>
           </Button>
           <Button asChild variant="secondary">
             <a href="https://github.com/GuiEpi/react-dot-cursor" target="_blank" rel="noopener noreferrer">
