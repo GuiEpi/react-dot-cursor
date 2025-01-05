@@ -13,7 +13,7 @@
 
 <br />
 
-<div align="center"><strong>An opinionated cursor component for React.</strong></div>
+<div align="center"><strong>An opinionated cursor component animated with <a href="https://motion.dev">Motion</a> for React.</strong></div>
 
 <br />
 
