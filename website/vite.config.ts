@@ -9,10 +9,7 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 8081,
   },
-  plugins: [
-    {enforce: 'pre', ...mdx()},
-    react()
-  ],
+  plugins: [{ enforce: 'pre', ...mdx() }, react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

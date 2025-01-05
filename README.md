@@ -1,4 +1,3 @@
-
 <div align="center">
     <a href="https://react-dot-cursor.guics.st/">
         <img width="200" alt="react-dot-cursor - Try it out" src="https://raw.githubusercontent.com/GuiEpi/react-dot-cursor/refs/heads/main/website/public/react-dot-cursor.svg"/>
@@ -13,7 +12,9 @@
 
 <br />
 
-<div align="center"><strong>An opinionated cursor component animated with <a href="https://motion.dev">Motion</a> for React.</strong></div>
+<div align="center">
+  <strong>An opinionated cursor component animated with <a href="https://motion.dev">Motion</a> for React.</strong>
+</div>
 
 <br />
 
