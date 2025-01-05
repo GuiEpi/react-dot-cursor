@@ -1,0 +1,65 @@
+name: Publish Package
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+      version_changed: ${{ steps.check_version.outputs.version_changed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check for version change
+        id: check_version
+        run: |
+          if git diff --name-only HEAD~1..HEAD | grep -q '^package\.json$'; then
+            VERSION_CHANGED=1
+          else
+            VERSION_CHANGED=0
+          fi
+          echo "version_changed=$VERSION_CHANGED" >> "$GITHUB_OUTPUT"
+      - name: Get version
+        if: ${{ steps.check_version.outputs.version_changed == '1' }}
+        id: get_version
+        run: |
+          VERSION=$(jq -r .version package.json)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+  publish:
+    needs: version
+    if: ${{ needs.Version.outputs.version_changed == '1' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build package
+        run: pnpm build
+
+      - name: Publish package
+        run: pnpm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
