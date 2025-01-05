@@ -11,9 +11,7 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-l
 FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
-RUN pnpm run build
-
-RUN pnpm run build:website
+RUN pnpm run build && pnpm run build:website
 
 FROM nginx:alpine
 
