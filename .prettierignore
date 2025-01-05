@@ -1,9 +1,5 @@
 # Ignore artifacts:
 build
-coverage
-
-# Ignore all HTML files:
-**/*.html
 
 # Ignore pnpm-lock
 pnpm-lock.yaml
