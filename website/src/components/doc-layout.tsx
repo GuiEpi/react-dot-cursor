@@ -26,7 +26,12 @@ export function DocsLayout() {
             <Link to="/">
               <img className="h-20 w-20 mb-4" src={ReactDotCursorLogo} alt="React Dot Cursor Logo" />
             </Link>
-            <a className="flex underline" href="https://github.com/GuiEpi/react-dot-cursor" target="_blank" rel="noopener noreferrer">
+            <a
+              className="flex underline"
+              href="https://github.com/GuiEpi/react-dot-cursor"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               GitHub
             </a>
           </header>

@@ -72,8 +72,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         with:
-          tag_name: "v${{ needs.Version.outputs.version }}"
-          name: "v${{ needs.Version.outputs.version }}"
+          tag_name: 'v${{ needs.Version.outputs.version }}'
+          name: 'v${{ needs.Version.outputs.version }}'
           draft: false
           prerelease: false
           files: |
