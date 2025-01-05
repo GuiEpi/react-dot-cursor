@@ -1,4 +1,3 @@
-import './App.css';
 import { ThemeProvider } from './providers/theme-provider';
 import { Route, Routes } from 'react-router';
 import { Cursor } from 'react-dot-cursor';
