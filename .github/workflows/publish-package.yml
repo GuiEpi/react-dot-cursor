@@ -1,3 +1,7 @@
+env:
+  DIRECTORY: .output
+  PROJECT_NAME: react-dot-cursor
+
 name: Publish Package
 
 on:
@@ -62,3 +66,17 @@ jobs:
         run: pnpm publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        with:
+          tag_name: "v${{ needs.Version.outputs.version }}"
+          name: "v${{ needs.Version.outputs.version }}"
+          draft: false
+          prerelease: false
+          files: |
+            ${{ env.DIRECTORY }}/${{env.PROJECT_NAME}}-${{ needs.Version.outputs.version }}-chrome.zip
+            ${{ env.DIRECTORY }}/${{env.PROJECT_NAME}}-${{ needs.Version.outputs.version }}-firefox.zip
+            ${{ env.DIRECTORY }}/${{env.PROJECT_NAME}}-${{ needs.Version.outputs.version }}-sources.zip
