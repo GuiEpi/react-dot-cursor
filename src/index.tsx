@@ -4,7 +4,17 @@ import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'motion/react';
 import { CursorType, Position, CursorProps } from './types';
 
-const INTERACTIVE_ELEMENTS: string[] = ['BUTTON', 'A', 'INPUT', 'LABEL', 'SELECT', 'TEXTAREA', 'DETAILS', 'SUMMARY'];
+const INTERACTIVE_ELEMENTS: string[] = [
+  'BUTTON',
+  'A',
+  'INPUT',
+  'LABEL',
+  'SELECT',
+  'TEXTAREA',
+  'DETAILS',
+  'SUMMARY',
+  'OPTION',
+];
 
 const TEXT_ELEMENTS: string[] = [
   'P',
@@ -30,7 +40,43 @@ const TEXT_ELEMENTS: string[] = [
   'MARK',
   'Q',
   'CITE',
+  'DL',
+  'DT',
+  'DD',
+  'FIGCAPTION',
+  'ABBR',
+  'TIME',
+  'DEL',
+  'INS',
+  'VAR',
+  'SAMP',
+  'KBD',
+  'SMALL',
 ];
+
+const isMobile = (): boolean => {
+  return /iPhone|iPad|iPod|Android|WebOS/i.test(navigator.userAgent);
+};
+
+const isInteractive = (target: HTMLElement): boolean => {
+  if (INTERACTIVE_ELEMENTS.includes(target.tagName)) {
+    return true;
+  }
+  // Check interactions via a role or an 'onclick' event
+  if (
+    target.getAttribute('role') === 'button' ||
+    target.getAttribute('role') === 'link' ||
+    target.hasAttribute('onclick')
+  ) {
+    return true;
+  }
+  // Check if the element belongs to an interactive container
+  if (target.closest('A') || target.closest('BUTTON')) {
+    return true;
+  }
+
+  return false;
+};
 
 const Cursor: React.FC<CursorProps> = ({ zIndex = 9999 }) => {
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
@@ -77,6 +123,10 @@ const Cursor: React.FC<CursorProps> = ({ zIndex = 9999 }) => {
   };
 
   useEffect(() => {
+    if (isMobile()) {
+      return;
+    }
+
     const handleMouseMove = (e: MouseEvent): void => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
@@ -86,14 +136,13 @@ const Cursor: React.FC<CursorProps> = ({ zIndex = 9999 }) => {
 
       if (target.hasAttribute('disabled')) {
         setCursorType('disabled');
-      }  else if (INTERACTIVE_ELEMENTS.includes(target.tagName) || (target.tagName === 'IMG' && target.closest('A'))) {
+      }
+      // Prioritize interactive elements
+      else if (isInteractive(target)) {
         setCursorType('hover');
       } else if (TEXT_ELEMENTS.includes(target.tagName)) {
         setFontSize(parseFloat(getComputedStyle(target).fontSize));
         setCursorType('text');
-      } else if (target.tagName === 'A' && target.querySelector('IMG')) {
-        // fix strange css behavior of images inside links
-        setCursorType('default');
       } else {
         setCursorType('default');
       }
@@ -117,6 +166,10 @@ const Cursor: React.FC<CursorProps> = ({ zIndex = 9999 }) => {
       window.removeEventListener('mouseup', handleMouseUp);
     };
   }, []);
+
+  if (isMobile()) {
+    return null;
+  }
 
   return (
     <motion.div
