@@ -73,7 +73,7 @@ const App = () => {
 Then remove the default cursor with CSS.
 
 ```css
-:root {
+* {
   cursor: none !important;
 }
 ```
