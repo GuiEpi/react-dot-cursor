@@ -17,9 +17,9 @@ export function Home() {
         />
         <h1 className="text-4xl font-bold mb-2">React dot Cursor</h1>
         <p className="text-lg mb-6 text-center">An opinionated cursor component animated with Motion for React.</p>
-        <div className="flex space-x-4 mb-8">
-          <Button asChild>
-            <Link to="/docs">Documentation · v0.1.3</Link>
+        <div className="flex space-x-4 mb-8 ">
+          <Button className="documentation" asChild>
+            <Link to="/docs">Documentation</Link>
           </Button>
           <Button asChild variant="secondary">
             <a href="https://github.com/GuiEpi/react-dot-cursor" target="_blank" rel="noopener noreferrer">
@@ -33,7 +33,7 @@ export function Home() {
           <FeatureItem text="Respects disabled attribute" />
           <FeatureItem text="Scales with text size" />
           <FeatureItem text="Animated with motion" />
-          <FeatureItem text="Customizable colors" />
+          <FeatureItem text="Customizable" />
         </div>
         <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 my-12">
           <StepCard step={1} description="Install package" code="pnpm add react-dot-cursor" />
