@@ -1,7 +1,7 @@
 {
   "name": "website",
   "private": true,
-  "version": "0.1.11",
+  "version": "0.1.12",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -23,6 +23,7 @@
     "react-dom": "^18.3.1",
     "react-dot-cursor": "workspace:*",
     "react-router": "^7.1.1",
+    "rehype-highlight": "^7.0.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
