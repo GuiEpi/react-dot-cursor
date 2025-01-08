@@ -1,11 +1,107 @@
 # Styling
 
-You can style the cursor by setting the `--cursor-color` CSS variable. The value should be in **HSL format**.
+## Color Configuration
 
-### Set `--cursor-color` CSS variable
+### Using CSS Variables
+
+You can style the cursor by setting the `--cursor-color` CSS variable. The value should be in **HSL format**.
 
 ```css
 :root {
   --cursor-color: 349, 80%, 59%;
+}
+```
+
+### Dark Mode Support
+
+The cursor automatically detects system dark mode preferences and adjusts its color. You can override this behavior:
+
+```css
+/* Light mode */
+:root {
+  --cursor-color: 240, 10%, 3.9%;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cursor-color: 0, 0%, 98%;
+  }
+}
+```
+
+## Variants Styling
+
+Each variant can have its own unique styling through the theme configuration:
+
+```tsx
+const theme = {
+  variants: {
+    custom: {
+      style: {
+        // Cursor appearance
+        borderRadius: '8px',
+        width: 'auto',
+        height: 'auto',
+        padding: '1em',
+
+        // Optional: override color for this variant
+        backgroundColor: 'hsl(160, 100%, 50%)',
+      },
+      // Optional: content styling
+      content: {
+        text: 'Custom Text',
+        style: {
+          fontSize: '14px',
+          fontWeight: 'bold',
+          color: 'white', // Text color
+        },
+      },
+    },
+  },
+};
+```
+
+## Animation Customization
+
+The cursor uses Motion for animations. You can customize the animation properties in your variants:
+
+```tsx
+const theme = {
+  variants: {
+    custom: {
+      style: {
+        // Motion animation properties
+        scale: 1.2,
+        rotate: 45,
+        transition: {
+          duration: 0.2,
+          ease: [0.32, 0.72, 0, 1],
+        },
+      },
+    },
+  },
+};
+```
+
+## CSS Classes
+
+The cursor component provides the following CSS classes for additional styling:
+
+- `.react-dot-cursor` - The main cursor element
+- `.react-dot-cursor-content` - The text content container (when present)
+
+Example of custom CSS:
+
+```css
+.react-dot-cursor {
+  /* Add drop shadow */
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+}
+
+.react-dot-cursor-content {
+  /* Custom text styles */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 ```

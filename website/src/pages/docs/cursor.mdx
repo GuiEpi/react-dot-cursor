@@ -2,12 +2,103 @@
 
 This component will render the cursor.
 
-## Available options
+## Props
 
-```jsx
-<Cursor zIndex="9999" />
-```
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>zIndex</td>
+      <td>number</td>
+      <td>9999</td>
+      <td>Z-index of the cursor</td>
+    </tr>
+    <tr>
+      <td>theme</td>
+      <td>CursorTheme</td>
+      <td>\{}</td>
+      <td>Theme configuration for variants and rules</td>
+    </tr>
+    <tr>
+      <td>defaultColor</td>
+      <td>string</td>
+      <td>auto</td>
+      <td>Default HSL color value</td>
+    </tr>
+  </tbody>
+</table>
 
 ### `zIndex` Prop
 
 You can change the z-index of the cursor by modifying the `zIndex` prop. Defaults to `9999`.
+
+```jsx
+<Cursor zIndex={1000} />
+```
+
+### `theme` Prop
+
+The theme prop allows you to customize the cursor's appearance and behavior through variants and rules.
+
+```tsx
+const theme = {
+  variants: {
+    custom: {
+      style: {
+        borderRadius: '8px',
+        width: 'auto',
+        height: 'auto',
+        padding: '1em',
+      },
+      content: {
+        text: 'Custom Text',
+        style: {
+          fontSize: '14px',
+          fontWeight: 'bold',
+        },
+      },
+    },
+  },
+  rules: [
+    {
+      selector: '.custom-element',
+      variant: 'custom',
+      priority: 1,
+    },
+  ],
+};
+
+<Cursor theme={theme} />;
+```
+
+### `defaultColor` Prop
+
+Override the default cursor color. The value should be in HSL format.
+
+```jsx
+<Cursor defaultColor="349, 80%, 59%" />
+```
+
+## Default Behavior
+
+The cursor automatically detects and responds to:
+
+- Interactive elements (buttons, links, inputs)
+- Text elements
+- Disabled elements
+- Elements with `role="button"` or `role="link"`
+- Elements with click handlers
+
+It will adjust its appearance based on the element being hovered:
+
+- Regular elements: small dot
+- Interactive elements: larger dot
+- Text: vertical bar that matches text height
+- Disabled elements: semi-transparent dot
