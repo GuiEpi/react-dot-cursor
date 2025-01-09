@@ -16,7 +16,18 @@ export function Home() {
           alt="React Dot Cursor Logo"
         />
         <h1 className="text-4xl font-bold mb-2">React dot Cursor</h1>
-        <p className="text-lg mb-6 text-center">An opinionated cursor component animated with Motion for React.</p>
+        <p className="text-lg mb-6 text-center">
+          A fully customizable cursor component animated with{' '}
+          <a
+            className="text-primary underline-offset-4 hover:underline"
+            href="https://motion.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Motion
+          </a>{' '}
+          for React.
+        </p>
         <div className="flex space-x-4 mb-8 ">
           <Button className="documentation" asChild>
             <Link to="/docs">Documentation</Link>
