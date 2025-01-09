@@ -5,14 +5,16 @@
 </div>
 
 <div align="center">
-  <img src="https://img.shields.io/npm/v/react-dot-cursor" alt="NPM Version" />
+  <a href="https://www.npmjs.com/package/react-dot-cursor">
+    <img src="https://img.shields.io/npm/v/react-dot-cursor" alt="NPM Version" />
+  </a>
   <img src="https://github.com/GuiEpi/react-dot-cursor/actions/workflows/publish-package.yml/badge.svg" alt="Publish Status" />
 </div>
 
 <br />
 
 <div align="center">
-  <strong>An opinionated cursor component animated with <a href="https://motion.dev">Motion</a> for React.</strong>
+  <strong>A fully customizable cursor component animated with <a href="https://motion.dev">Motion</a> for React.</strong>
 </div>
 
 <br />
@@ -38,7 +40,7 @@
 - 🚫 Respects disabled attribute
 - 🔠 Scales with text size
 - 🎥 Animated with motion
-- 🎨 Customizable colors
+- 🎨 Customizable
 
 ## Installation
 
@@ -56,8 +58,7 @@ npm install react-dot-cursor
 
 ## Getting Started
 
-Add the `Cursor` component to your app.
-
+Add the `Cursor` component to your app:
 ```tsx
 import { Cursor } from 'react-dot-cursor';
 
@@ -70,8 +71,7 @@ const App = () => {
 };
 ```
 
-Then remove the default cursor with CSS.
-
+Then remove the default cursor with CSS:
 ```css
 * {
   cursor: none !important;
