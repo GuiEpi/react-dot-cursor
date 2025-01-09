@@ -1,7 +1,7 @@
 {
   "name": "react-dot-cursor",
-  "version": "0.2.0",
-  "description": "An opinionated cursor component animated with Motion for React.",
+  "version": "0.2.1",
+  "description": "A fully customizable cursor component animated with Motion for React.",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -27,7 +27,11 @@
     "cursor",
     "custom cursor",
     "dot cursor",
-    "motion cursor"
+    "motion cursor",
+    "animated cursor",
+    "customizable cursor",
+    "react custom cursor",
+    "react cursor"
   ],
   "author": "Guillaume Coussot <guillaume.coussot@gmail.com>",
   "license": "MIT",
