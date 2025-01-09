@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { motion } from 'motion/react';
 import { CursorProps, Position, CursorRule, CursorVariant, CursorType, CursorTheme } from './types';
-import { isMobile, isInteractive } from './utils';
+import { isMobile, isInteractive, isText } from './utils';
 import { TEXT_ELEMENTS } from './constants';
 
 const Cursor: React.FC<CursorProps> = ({ zIndex = 9999, theme = {}, defaultColor: customDefaultColor }) => {
@@ -104,7 +104,7 @@ const Cursor: React.FC<CursorProps> = ({ zIndex = 9999, theme = {}, defaultColor
         // Prioritize interactive elements
       } else if (isInteractive(target)) {
         setCurrentVariant('hover');
-      } else if (TEXT_ELEMENTS.includes(target.tagName as any)) {
+      } else if (isText(target)) {
         setFontSize(parseFloat(window.getComputedStyle(target).fontSize));
         setCurrentVariant('text');
       } else {
