@@ -59,6 +59,7 @@ npm install react-dot-cursor
 ## Getting Started
 
 Add the `Cursor` component to your app:
+
 ```tsx
 import { Cursor } from 'react-dot-cursor';
 
@@ -72,6 +73,7 @@ const App = () => {
 ```
 
 Then remove the default cursor with CSS:
+
 ```css
 * {
   cursor: none !important;

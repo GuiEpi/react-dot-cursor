@@ -48,7 +48,7 @@ You can change the z-index of the cursor by modifying the `zIndex` prop. Default
 The theme prop allows you to customize the cursor's appearance and behavior through variants and rules.
 
 ```tsx
-const theme = {
+const theme: CursorTheme = {
   variants: {
     custom: {
       style: {
@@ -77,6 +77,7 @@ const theme = {
 
 <Cursor theme={theme} />;
 ```
+> It is also possible to add several selectors in this way `selector: ['.custom-element1', '.custom-element2']`
 
 ### `defaultColor` Prop
 
