@@ -65,6 +65,12 @@ export default {
               padding: '0.3rem 0.2rem',
               borderRadius: '0.25rem',
             },
+            blockquote: {
+              quotes: 'none',
+              fontWeight: 'normal',
+              fontStyle: 'normal',
+              color: theme('colors.muted.foreground'),
+            },
           },
         },
       }),
