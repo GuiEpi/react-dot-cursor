@@ -23,8 +23,8 @@ export interface CursorVariant {
 
 /** Defines a rule for when to apply a specific cursor variant */
 export interface CursorRule {
-  /** CSS selector that triggers this rule ex: '.my-button' */
-  selector: string;
+  /** CSS selector(s) that triggers this rule. Can be a single selector or array of selectors */
+  selector: string | string[];
   /** Cursor variant to apply when selector matches */
   variant: CursorType;
   /** Optional priority for resolving conflicts between rules */

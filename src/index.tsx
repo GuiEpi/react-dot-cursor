@@ -82,7 +82,12 @@ const Cursor: React.FC<CursorProps> = ({ zIndex = 9999, theme = {}, defaultColor
 
       return (
         theme.rules
-          .filter((rule) => target.matches(rule.selector))
+          .filter((rule) => {
+            if (Array.isArray(rule.selector)) {
+              return rule.selector.some(selector => target.matches(selector));
+            }
+            return target.matches(rule.selector);
+          })
           .sort((a, b) => (b.priority || 0) - (a.priority || 0))[0] || null
       );
     },
