@@ -19,7 +19,7 @@ const theme: CursorTheme = {
         height: 'auto',
       },
       content: {
-        text: 'v0.2.1',
+        text: 'v0.2.2',
         style: {
           fontSize: '12px',
           fontWeight: 'bold',
