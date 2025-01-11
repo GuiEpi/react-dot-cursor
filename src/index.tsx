@@ -84,7 +84,7 @@ const Cursor: React.FC<CursorProps> = ({ zIndex = 9999, theme = {}, defaultColor
         theme.rules
           .filter((rule) => {
             if (Array.isArray(rule.selector)) {
-              return rule.selector.some(selector => target.matches(selector));
+              return rule.selector.some((selector) => target.matches(selector));
             }
             return target.matches(rule.selector);
           })
