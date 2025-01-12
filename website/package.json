@@ -1,11 +1,11 @@
 {
   "name": "website",
   "private": true,
-  "version": "0.1.14",
+  "version": "0.1.15",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -30,6 +30,7 @@
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/mdx": "^2.0.13",
     "@types/node": "^22.10.5",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
