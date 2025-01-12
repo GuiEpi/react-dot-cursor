@@ -31,7 +31,7 @@ jobs:
         run: |
           VERSION=$(jq -r .version website/package.json)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
