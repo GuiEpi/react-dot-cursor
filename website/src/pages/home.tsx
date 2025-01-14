@@ -10,7 +10,7 @@ export function Home() {
     <>
       <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground p-4">
         <img
-          style={{ filter: 'drop-shadow(0 0 2em #EA4363)' }}
+          style={{ filter: 'drop-shadow(0 0 1em #EA4363)' }}
           className="h-20 w-20 mb-4 logo"
           src={ReactDotCursorLogo}
           alt="React Dot Cursor Logo"
