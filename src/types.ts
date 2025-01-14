@@ -45,6 +45,8 @@ export interface CursorProps {
   zIndex?: number;
   /** Theme configuration for variants and rules */
   theme?: CursorTheme;
+  /** Whether to scale cursor on click */
+  scaleOnClick?: boolean;
   /** Default color in HSL format */
   defaultColor?: string;
 }

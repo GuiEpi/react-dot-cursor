@@ -4,9 +4,13 @@ import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { motion } from 'motion/react';
 import { CursorProps, Position, CursorRule, CursorVariant, CursorType, CursorTheme } from './types';
 import { isMobile, isInteractive, isText } from './utils';
-import { TEXT_ELEMENTS } from './constants';
 
-const Cursor: React.FC<CursorProps> = ({ zIndex = 9999, theme = {}, defaultColor: customDefaultColor }) => {
+const Cursor: React.FC<CursorProps> = ({
+  zIndex = 9999,
+  theme = {},
+  scaleOnClick = true,
+  defaultColor: customDefaultColor,
+}) => {
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
   const [currentVariant, setCurrentVariant] = useState<CursorType>('default');
   const [fontSize, setFontSize] = useState(16);
@@ -189,7 +193,7 @@ const Cursor: React.FC<CursorProps> = ({ zIndex = 9999, theme = {}, defaultColor
         ...finalStyle,
         x: '-50%',
         y: '-50%',
-        scale: isClicking ? 0.9 : 1,
+        scale: scaleOnClick && isClicking ? 0.9 : 1,
       }}
       transition={{
         duration: 0.15,
