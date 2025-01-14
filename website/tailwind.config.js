@@ -54,6 +54,7 @@ export default {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            color: theme('colors.foreground'),
             'code::before': {
               content: '""',
             },
@@ -70,6 +71,16 @@ export default {
               fontWeight: 'normal',
               fontStyle: 'normal',
               color: theme('colors.muted.foreground'),
+            },
+            pre: {
+              color: theme('colors.foreground'),
+              background: theme('colors.muted.DEFAULT'),
+            },
+            'ul > li::marker': {
+              color: theme('colors.foreground'),
+            },
+            'ol > li::marker': {
+              color: theme('colors.foreground'),
             },
           },
         },
