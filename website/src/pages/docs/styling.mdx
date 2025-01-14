@@ -1,8 +1,8 @@
-# Styling
+# <a name="styling"></a>Styling
 
-## Color Configuration
+## <a name="color-configuration"></a>Color Configuration
 
-### Using CSS Variables
+### <a name="using-css-variables"></a>Using CSS Variables
 
 You can style the cursor by setting the `--cursor-color` CSS variable. The value should be in **HSL format**.
 
@@ -12,7 +12,7 @@ You can style the cursor by setting the `--cursor-color` CSS variable. The value
 }
 ```
 
-### Dark Mode Support
+### <a name="dark-mode-support"></a>Dark Mode Support
 
 The cursor automatically detects system dark mode preferences and adjusts its color. You can override this behavior:
 
@@ -30,7 +30,64 @@ The cursor automatically detects system dark mode preferences and adjusts its co
 }
 ```
 
-## Variants Styling
+## <a name="default-variants"></a>Default Variants
+
+The cursor comes with predefined variants for common interactions. You can override these in your [theme configuration](#variants-styling):
+
+```tsx
+const defaultVariants: Record<CursorType, CursorVariant> = {
+  default: {
+    style: {
+      scale: 1,
+      borderRadius: '50%',
+      width: 16,
+      height: 16,
+    },
+  },
+  hover: {
+    style: {
+      scale: 1,
+      borderRadius: '50%',
+      width: 30,
+      height: 30,
+    },
+  },
+  text: {
+    style: {
+      scale: 1,
+      width: 3,
+      height: fontSize,
+      borderRadius: '1rem',
+    },
+  },
+  disabled: {
+    style: {
+      scale: 1,
+      borderRadius: '50%',
+      opacity: 0.5,
+      width: 12,
+      height: 12,
+    },
+  },
+};
+```
+
+It automatically detects and responds to:
+
+- Interactive elements (buttons, links, inputs)
+- Text elements
+- Disabled elements
+- Elements with `role="button"` or `role="link"`
+- Elements with click handlers
+
+It will adjust its appearance based on the element being hovered:
+
+- Regular elements: small dot
+- Interactive elements: larger dot
+- Text: vertical bar that matches text height
+- Disabled elements: semi-transparent dot
+
+## <a name="variants-styling"></a>Variants Styling
 
 Each variant can have its own unique styling through the theme configuration:
 
@@ -59,10 +116,17 @@ const theme: CursorTheme = {
       },
     },
   },
+  rules: [
+    {
+      selector: '.custom-element',
+      variant: 'custom',
+      priority: 1,
+    },
+  ],
 };
 ```
 
-## Animation Customization
+## <a name="animation-customization"></a>Animation Customization
 
 The cursor uses Motion for animations. You can customize the animation properties in your variants:
 
@@ -81,10 +145,17 @@ const theme: CursorTheme = {
       },
     },
   },
+  rules: [
+    {
+      selector: '.custom-element',
+      variant: 'custom',
+      priority: 1,
+    },
+  ],
 };
 ```
 
-## CSS Classes
+## <a name="css-classes"></a>CSS Classes
 
 The cursor component provides the following CSS classes for additional styling:
 
