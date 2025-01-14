@@ -31,4 +31,6 @@ export const isText = (target: HTMLElement): boolean => {
   if (TEXT_ELEMENTS.includes(target.tagName as any)) {
     return true;
   }
+
+  return false;
 };
