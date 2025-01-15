@@ -74,7 +74,7 @@ export default {
             },
             pre: {
               color: theme('colors.foreground'),
-              background: theme('colors.muted.DEFAULT'),
+              backgroundColor: theme('colors.muted.DEFAULT'),
             },
             'ul > li::marker': {
               color: theme('colors.foreground'),
