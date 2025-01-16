@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  cursor: none !important;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -67,6 +63,7 @@
 @layer base {
   * {
     @apply border-border;
+    @apply cursor-none;
   }
   body {
     @apply bg-background text-foreground;
