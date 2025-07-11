@@ -31,8 +31,8 @@ const Cursor: React.FC<CursorProps> = ({
   }, [currentVariant]);
 
   const defaultColor = useMemo(() => {
-    const fallbackColor = window.matchMedia('(prefers-color-scheme: dark)').matches 
-      ? 'hsl(0 0% 98%)' 
+    const fallbackColor = window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'hsl(0 0% 98%)'
       : 'hsl(240 10% 3.9%)';
     return customDefaultColor || fallbackColor;
   }, [customDefaultColor]);
