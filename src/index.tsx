@@ -30,11 +30,12 @@ const Cursor: React.FC<CursorProps> = ({
     }
   }, [currentVariant]);
 
-  const defaultColor = useMemo(
-    () =>
-      customDefaultColor || (window.matchMedia('(prefers-color-scheme: dark)').matches ? '0 0% 98%' : '240 10% 3.9%'),
-    [customDefaultColor],
-  );
+  const defaultColor = useMemo(() => {
+    const fallbackColor = window.matchMedia('(prefers-color-scheme: dark)').matches 
+      ? 'hsl(0 0% 98%)' 
+      : 'hsl(240 10% 3.9%)';
+    return customDefaultColor || fallbackColor;
+  }, [customDefaultColor]);
 
   const defaultVariants: Record<CursorType, CursorVariant> = {
     default: {
@@ -185,7 +186,7 @@ const Cursor: React.FC<CursorProps> = ({
         left: position.x,
         pointerEvents: 'none',
         zIndex,
-        backgroundColor: `hsl(var(--cursor-color, ${defaultColor}))`,
+        backgroundColor: `var(--cursor-color, ${defaultColor})`,
         transformOrigin: 'left center',
         overflow: 'hidden', // Important for the compression effect
       }}
