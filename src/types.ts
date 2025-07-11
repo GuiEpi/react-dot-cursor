@@ -47,7 +47,7 @@ export interface CursorProps {
   theme?: CursorTheme;
   /** Whether to scale cursor on click */
   scaleOnClick?: boolean;
-  /** Default color in HSL format */
+  /** Default color (supports HSL, RGB, OKLCH, hex, named colors, etc.) */
   defaultColor?: string;
 }
 
