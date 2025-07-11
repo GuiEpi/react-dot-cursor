@@ -121,9 +121,6 @@ importers:
       globals:
         specifier: ^15.14.0
         version: 15.14.0
-      postcss:
-        specifier: ^8.5.1
-        version: 8.5.1
       tailwindcss:
         specifier: ^4.1.11
         version: 4.1.11
