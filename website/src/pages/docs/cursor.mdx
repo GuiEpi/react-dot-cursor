@@ -36,7 +36,7 @@ This component will render the cursor.
       <td>[defaultColor](#default-color-prop)</td>
       <td>string</td>
       <td>auto</td>
-      <td>Default color (supports multiple formats)</td>
+      <td>Default color in valid CSS format</td>
     </tr>
   </tbody>
 </table>
@@ -96,24 +96,23 @@ If `false`, do not scale cursor when clicking. Defaults to `true`.
 
 ### <a name="default-color-prop"></a>`defaultColor` Prop
 
-Change the default cursor color. The value supports **multiple color formats** including HSL, RGB, OKLCH, hex, and named colors. By default, the cursor uses the HSL values from the <a href="https://ui.shadcn.com/colors" target="_blank" rel="noopener noreferrer">Tailwind CSS color palette</a>:
+Change the default cursor color using any **valid CSS color format**. By default, the cursor uses HSL colors from the <a href="https://ui.shadcn.com/colors" target="_blank" rel="noopener noreferrer">Tailwind CSS color palette</a>:
 
-- Dark mode: `0 0% 98%` (zinc-50)
-- Light mode: `240 10% 3.9%` (zinc-950)
+- Dark mode: `hsl(0 0% 98%)` (zinc-50)
+- Light mode: `hsl(240 10% 3.9%)` (zinc-950)
 
-**Supported color formats:**
+**Examples with explicit CSS color formats:**
 
 ```jsx
-// HSL (with or without function wrapper)
-<Cursor defaultColor="349, 80%, 59%" />
+// HSL colors
+<Cursor defaultColor="hsl(349 80% 59%)" />
 <Cursor defaultColor="hsl(349, 80%, 59%)" />
 
-// RGB (with or without function wrapper)
-<Cursor defaultColor="255 64 129" />
+// RGB colors
+<Cursor defaultColor="rgb(255 64 129)" />
 <Cursor defaultColor="rgb(255, 64, 129)" />
 
-// OKLCH (with or without function wrapper)
-<Cursor defaultColor="0.7 0.15 330" />
+// OKLCH colors
 <Cursor defaultColor="oklch(0.7 0.15 330)" />
 
 // Hex colors

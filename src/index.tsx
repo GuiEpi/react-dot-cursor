@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { motion } from 'motion/react';
 import { CursorProps, Position, CursorRule, CursorVariant, CursorType, CursorTheme } from './types';
-import { isMobile, isInteractive, isText, normalizeColor } from './utils';
+import { isMobile, isInteractive, isText } from './utils';
 
 const Cursor: React.FC<CursorProps> = ({
   zIndex = 9999,
@@ -31,9 +31,10 @@ const Cursor: React.FC<CursorProps> = ({
   }, [currentVariant]);
 
   const defaultColor = useMemo(() => {
-    const fallbackColor = window.matchMedia('(prefers-color-scheme: dark)').matches ? '0 0% 98%' : '240 10% 3.9%';
-    const colorToNormalize = customDefaultColor || fallbackColor;
-    return normalizeColor(colorToNormalize);
+    const fallbackColor = window.matchMedia('(prefers-color-scheme: dark)').matches 
+      ? 'hsl(0 0% 98%)' 
+      : 'hsl(240 10% 3.9%)';
+    return customDefaultColor || fallbackColor;
   }, [customDefaultColor]);
 
   const defaultVariants: Record<CursorType, CursorVariant> = {

@@ -4,18 +4,13 @@
 
 ### <a name="using-css-variables"></a>Using CSS Variables
 
-You can style the cursor by setting the `--cursor-color` CSS variable. The value supports **multiple color formats** including HSL, RGB, OKLCH, hex, and named colors.
+You can style the cursor by setting the `--cursor-color` CSS variable using any **valid CSS color format**.
 
 ```css
-/* HSL format (legacy support) */
 :root {
-  --cursor-color: 349, 80%, 59%;
-}
-
-/* Or any other supported color format */
-:root {
+  --cursor-color: hsl(349 80% 59%); /* HSL */
   --cursor-color: #ff4081; /* Hex */
-  --cursor-color: rgb(255, 64, 129); /* RGB */
+  --cursor-color: rgb(255 64 129); /* RGB */
   --cursor-color: oklch(0.7 0.15 330); /* OKLCH */
   --cursor-color: hotpink; /* Named color */
 }
@@ -23,24 +18,18 @@ You can style the cursor by setting the `--cursor-color` CSS variable. The value
 
 ### <a name="dark-mode-support"></a>Dark Mode Support
 
-The cursor automatically detects system dark mode preferences and adjusts its color. You can override this behavior using any supported color format:
+The cursor automatically detects system dark mode preferences and adjusts its color. You can override this behavior using any valid CSS color format:
 
 ```css
 /* Light mode */
 :root {
-  --cursor-color: 240, 10%, 3.9%; /* HSL */
-  /* Or use other formats: */
-  /* --cursor-color: #0a0a0b; */
-  /* --cursor-color: oklch(0.15 0.02 240); */
+  --cursor-color: hsl(240 10% 3.9%);
 }
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --cursor-color: 0, 0%, 98%; /* HSL */
-    /* Or use other formats: */
-    /* --cursor-color: #fafafa; */
-    /* --cursor-color: oklch(0.98 0 0); */
+    --cursor-color: hsl(0 0% 98%);
   }
 }
 ```
