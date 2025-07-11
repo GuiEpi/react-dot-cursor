@@ -62,7 +62,7 @@ export default {
               content: '""',
             },
             code: {
-              backgroundColor: theme('colors.muted.DEFAULT'),
+              backgroundColor: `${theme('colors.muted.DEFAULT')} !important`,
               padding: '0.3rem 0.2rem',
               borderRadius: '0.25rem',
             },
