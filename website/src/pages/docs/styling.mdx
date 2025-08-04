@@ -4,15 +4,12 @@
 
 ### <a name="using-css-variables"></a>Using CSS Variables
 
-You can style the cursor by setting the `--cursor-color` CSS variable using any **valid CSS color format**.
+You can style the cursor by setting the `--cursor-color` and `--cursor-text-color` CSS variable using any **valid CSS color format**.
 
 ```css
 :root {
-  --cursor-color: hsl(349 80% 59%); /* HSL */
-  --cursor-color: #ff4081; /* Hex */
-  --cursor-color: rgb(255 64 129); /* RGB */
-  --cursor-color: oklch(0.7 0.15 330); /* OKLCH */
-  --cursor-color: hotpink; /* Named color */
+  --cursor-color: hsl(349 80% 59%);
+  --cursor-text-color: white;
 }
 ```
 
@@ -24,12 +21,14 @@ The cursor automatically detects system dark mode preferences and adjusts its co
 /* Light mode */
 :root {
   --cursor-color: hsl(240 10% 3.9%);
+  --cursor-text-color: hsl(0 0% 98%);
 }
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --cursor-color: hsl(0 0% 98%);
+    --cursor-text-color: hsl(240 10% 3.9%);
   }
 }
 ```

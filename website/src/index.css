@@ -48,6 +48,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
     --cursor-color: hsl(349, 80%, 59%);
+    --cursor-text-color: white;
   }
   .dark {
     --background: 240 10% 3.9%;
@@ -75,6 +76,7 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
     --cursor-color: hsl(349, 80%, 59%);
+    --cursor-text-color: white;
   }
 }
 

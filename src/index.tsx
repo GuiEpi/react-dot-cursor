@@ -37,6 +37,10 @@ const Cursor: React.FC<CursorProps> = ({
     return customDefaultColor || fallbackColor;
   }, [customDefaultColor]);
 
+  const defaultTextColor = useMemo(() => {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'hsl(240 10% 3.9%)' : 'hsl(0 0% 98%)';
+  }, []);
+
   const defaultVariants: Record<CursorType, CursorVariant> = {
     default: {
       style: {
@@ -206,7 +210,7 @@ const Cursor: React.FC<CursorProps> = ({
           ref={contentRef}
           className={`react-dot-cursor-content ${currentVariantData.content.className || ''}`}
           style={{
-            color: 'white',
+            color: `var(--cursor-text-color, ${defaultTextColor})`,
             fontSize: '16px',
             ...currentVariantData.content.style,
           }}
