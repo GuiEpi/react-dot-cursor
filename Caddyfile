@@ -1,0 +1,9 @@
+# Caddy provisions HTTPS automatically via Let's Encrypt.
+# Requires: a DNS A record react-dot-cursor.guics.st -> <VPS IP>, ports 80+443 open.
+
+react-dot-cursor.guics.st {
+	root * /usr/share/caddy
+	encode gzip zstd
+	try_files {path} /index.html
+	file_server
+}
