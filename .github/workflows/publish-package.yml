@@ -1,13 +1,7 @@
-env:
-  DIRECTORY: .output
-  PROJECT_NAME: react-dot-cursor
-
 name: Publish Package
 
 on:
   push:
-    branches: ['main']
-  pull_request:
     branches: ['main']
 
 jobs:
@@ -37,8 +31,11 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
   publish:
     needs: version
-    if: ${{ needs.Version.outputs.version_changed == '1' }}
+    if: ${{ needs.version.outputs.version_changed == '1' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # OIDC token for npm trusted publishing
 
     steps:
       - name: Checkout
@@ -54,7 +51,6 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -64,15 +60,13 @@ jobs:
 
       - name: Publish package
         run: pnpm publish --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create release
         uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         with:
-          tag_name: 'v${{ needs.Version.outputs.version }}'
-          name: 'v${{ needs.Version.outputs.version }}'
+          tag_name: 'v${{ needs.version.outputs.version }}'
+          name: 'v${{ needs.version.outputs.version }}'
           draft: false
           prerelease: false
