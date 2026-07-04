@@ -1,10 +1,8 @@
 version: 2
 updates:
-  # JavaScript deps (pnpm workspace: root package + website)
+  # JavaScript deps (pnpm workspace — the root lockfile covers all packages)
   - package-ecosystem: 'npm'
-    directories:
-      - '/'
-      - '/website'
+    directory: '/'
     schedule:
       interval: 'weekly'
     open-pull-requests-limit: 10
