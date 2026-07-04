@@ -44,15 +44,15 @@
     "url": "https://github.com/GuiEpi/react-dot-cursor/issues"
   },
   "dependencies": {
-    "motion": "^11.18.0"
+    "motion": "^12.42.2"
   },
   "peerDependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "prettier": "^3.4.2",
     "tsup": "^8.3.5",
     "typescript": "~5.6.3"
