@@ -9,10 +9,8 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    // tsup's DTS build injects the deprecated baseUrl option; tolerated until TS 7
+    "ignoreDeprecations": "6.0"
   },
   "include": ["src"],
   "exclude": ["website"]
