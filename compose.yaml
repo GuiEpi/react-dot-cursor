@@ -3,16 +3,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: react-dot-cursor
     restart: unless-stopped
-    ports:
-      - '80:80'
-      - '443:443'
-      - '443:443/udp' # HTTP/3
-    volumes:
-      # persist certs/config so redeploys don't re-hit Let's Encrypt
-      - caddy-data:/data
-      - caddy-config:/config
+    expose:
+      - '8081' # reachable only by the edge caddy on the shared network, not the host
+    networks:
+      - edge
 
-volumes:
-  caddy-data:
-  caddy-config:
+networks:
+  edge:
+    external: true # created by the immopad-bot-trafic-tracker stack (the edge Caddy)

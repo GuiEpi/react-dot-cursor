@@ -1,7 +1,8 @@
-# Caddy provisions HTTPS automatically via Let's Encrypt.
-# Requires: a DNS A record react-dot-cursor.guics.st -> <VPS IP>, ports 80+443 open.
+# Serves the static site on :8081, plain HTTP. HTTPS for react-dot-cursor.guics.st
+# is terminated by the shared edge Caddy (immopad-bot-trafic-tracker's caddy service),
+# which reaches this container over the external `edge` docker network.
 
-react-dot-cursor.guics.st {
+:8081 {
 	root * /usr/share/caddy
 	encode gzip zstd
 	try_files {path} /index.html
