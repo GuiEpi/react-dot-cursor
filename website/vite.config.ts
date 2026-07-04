@@ -4,9 +4,14 @@ import path from 'path';
 import mdx from '@mdx-js/rollup';
 import rehypeHighlight from 'rehype-highlight';
 import tailwindcss from '@tailwindcss/vite';
+import { version as libVersion } from '../package.json';
 
 // https://vite.dev/config/
 export default defineConfig({
+  define: {
+    // version of the react-dot-cursor package, injected at build time
+    __LIB_VERSION__: JSON.stringify(libVersion),
+  },
   server: {
     host: '0.0.0.0',
     port: 8081,

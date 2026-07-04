@@ -19,7 +19,7 @@ const theme: CursorTheme = {
         height: 'auto',
       },
       content: {
-        text: 'v1.0.0',
+        text: `v${__LIB_VERSION__}`,
         style: {
           fontSize: '12px',
           fontWeight: 'bold',
