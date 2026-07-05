@@ -8,19 +8,10 @@ Add `snap` to any [rule](/docs/cursor#theme-prop). The cursor snaps onto the ele
 
 ```tsx
 const theme: CursorTheme = {
-  variants: {
-    magnetic: {
-      // While snapped the cursor covers the element,
-      // so give it a translucent style
-      style: {
-        backgroundColor: 'rgba(234, 67, 99, 0.15)',
-      },
-    },
-  },
   rules: [
     {
       selector: '.snap-target',
-      variant: 'magnetic',
+      variant: 'default',
       snap: true,
     },
   ],
@@ -29,7 +20,7 @@ const theme: CursorTheme = {
 <Cursor theme={theme} />;
 ```
 
-> While snapped, the cursor's `width`, `height` and `borderRadius` are derived from the element. The variant still controls everything else (color, opacity, content...). Since the cursor renders **above** the element, prefer translucent backgrounds.
+> While snapped, the cursor's `width`, `height` and `borderRadius` are derived from the element, and its background becomes a translucent version of your cursor color so the element stays visible underneath. The variant still controls everything else, and setting a `backgroundColor` on it overrides the translucent default.
 
 ## <a name="try-it"></a>Try it
 
@@ -99,6 +90,23 @@ Pass an object instead of `true` to tune the effect:
     </tr>
   </tbody>
 </table>
+
+## <a name="color"></a>Color
+
+While snapped, the cursor background defaults to **your cursor color at 15% opacity** (from `--cursor-color` or the [`defaultColor` prop](/docs/cursor#default-color-prop)), so the wrapped element stays visible underneath. Nothing to configure.
+
+To use another color, set a `backgroundColor` on the rule's variant, it takes precedence over the translucent default:
+
+```tsx
+const theme: CursorTheme = {
+  variants: {
+    spotlight: {
+      style: { backgroundColor: 'rgba(59, 130, 246, 0.2)' },
+    },
+  },
+  rules: [{ selector: '.snap-target', variant: 'spotlight', snap: true }],
+};
+```
 
 ## <a name="accessibility"></a>Accessibility
 

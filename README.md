@@ -84,18 +84,13 @@ Then remove the default cursor with CSS:
 
 ## Magnetic Snap
 
-Make the cursor snap onto elements through a theme rule: it stretches to wrap the element and gently drifts toward the pointer:
+Make the cursor snap onto elements through a theme rule: it stretches to wrap the element with a translucent version of your cursor color, gently drifts toward the pointer, and can even pull the element along (`snap: { pull: 0.1 }`):
 
 ```tsx
 import { Cursor, CursorTheme } from 'react-dot-cursor';
 
 const theme: CursorTheme = {
-  variants: {
-    magnetic: {
-      style: { backgroundColor: 'rgba(234, 67, 99, 0.15)' },
-    },
-  },
-  rules: [{ selector: '.snap-target', variant: 'magnetic', snap: true }],
+  rules: [{ selector: '.snap-target', variant: 'default', snap: true }],
 };
 
 <Cursor theme={theme} />;

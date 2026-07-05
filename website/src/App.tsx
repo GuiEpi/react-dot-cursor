@@ -10,12 +10,6 @@ import SnapDoc from './pages/docs/snap.mdx';
 
 const theme: CursorTheme = {
   variants: {
-    magnetic: {
-      // translucent so the snapped element stays visible under the cursor
-      style: {
-        backgroundColor: 'rgba(234, 67, 99, 0.15)',
-      },
-    },
     documentation: {
       style: {
         display: 'flex',
@@ -42,21 +36,21 @@ const theme: CursorTheme = {
     },
     {
       selector: '.snap-target',
-      variant: 'magnetic',
+      variant: 'default',
       priority: 2,
       snap: true,
     },
     {
       // sidebar links are already wide: tighter wrap
       selector: '.snap-nav',
-      variant: 'magnetic',
+      variant: 'default',
       priority: 2,
       snap: { padding: 3 },
     },
     {
       // the element itself follows the pointer
       selector: '.snap-pull',
-      variant: 'magnetic',
+      variant: 'default',
       priority: 2,
       snap: { pull: 0.1 },
     },
