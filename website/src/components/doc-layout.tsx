@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router';
+import { Link, NavLink, Outlet } from 'react-router';
 import ReactDotCursorLogo from '/react-dot-cursor.svg';
 import { Footer } from './footer';
 
@@ -6,12 +6,15 @@ const TableItem: React.FC<{
   href: string;
   children?: React.ReactNode;
 }> = ({ children, href }) => (
-  <Link
+  <NavLink
     to={href}
-    className="snap-nav rounded px-3 py-1.5 transition-colors duration-200 relative block text-muted-foreground hover:text-primary"
+    end
+    className={({ isActive }) =>
+      `snap-nav rounded px-3 py-1.5 relative block ${isActive ? 'font-semibold text-primary' : 'text-muted-foreground'}`
+    }
   >
     {children}
-  </Link>
+  </NavLink>
 );
 
 const TableHeader: React.FC<{
