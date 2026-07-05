@@ -65,6 +65,8 @@ export interface CursorProps {
   defaultColor?: string;
   /** Spring driving the magnetic snap (enter, exit and drift). Free tracking is always 1:1. Defaults to \{ stiffness: 450, damping: 38 } */
   spring?: SpringOptions;
+  /** Hide the native cursor by injecting `* { cursor: none !important }` while mounted. Set to false to manage it yourself. Defaults to true */
+  hideNativeCursor?: boolean;
 }
 
 export interface Position {

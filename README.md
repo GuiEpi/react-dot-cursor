@@ -74,13 +74,7 @@ const App = () => {
 };
 ```
 
-Then remove the default cursor with CSS:
-
-```css
-* {
-  cursor: none !important;
-}
-```
+That's it: the native cursor is hidden automatically while the component is mounted (opt out with `hideNativeCursor={false}` if you prefer to manage that CSS yourself).
 
 ## Magnetic Snap
 

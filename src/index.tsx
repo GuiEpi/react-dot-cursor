@@ -51,6 +51,7 @@ const Cursor: React.FC<CursorProps> = ({
   scaleOnClick = true,
   defaultColor: customDefaultColor,
   spring = DEFAULT_SPRING,
+  hideNativeCursor = true,
 }) => {
   const [currentVariant, setCurrentVariant] = useState<CursorType>('default');
   const [fontSize, setFontSize] = useState(16);
@@ -96,6 +97,17 @@ const Cursor: React.FC<CursorProps> = ({
   const useDirect = mode === 'free' || prefersReducedMotion;
   const x = useDirect ? rawX : springX;
   const y = useDirect ? rawY : springY;
+
+  // Hide the native cursor while the component is mounted; removing the
+  // stylesheet on unmount brings it back
+  useEffect(() => {
+    if (!hideNativeCursor || isMobile()) return;
+    const style = document.createElement('style');
+    style.setAttribute('data-react-dot-cursor', '');
+    style.textContent = '* { cursor: none !important; }';
+    document.head.appendChild(style);
+    return () => style.remove();
+  }, [hideNativeCursor]);
 
   // Measuring actual content dimensions
   useEffect(() => {
