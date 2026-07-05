@@ -32,7 +32,7 @@ export function Home() {
           <Button className="documentation" asChild>
             <Link to="/docs">Documentation</Link>
           </Button>
-          <Button asChild variant="secondary">
+          <Button asChild variant="secondary" className="snap-target">
             <a href="https://github.com/GuiEpi/react-dot-cursor" target="_blank" rel="noopener noreferrer">
               Github
             </a>

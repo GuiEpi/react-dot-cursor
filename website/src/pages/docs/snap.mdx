@@ -1,0 +1,97 @@
+# <a name="magnetic-snap"></a>Magnetic Snap
+
+Make the cursor magnetically snap onto elements: on hover, the cursor stretches to wrap the element and gently drifts toward the pointer instead of following it. You are feeling it right now on the sidebar links of this page.
+
+## <a name="usage"></a>Usage
+
+Add `snap` to any [rule](/docs/cursor#theme-prop). The cursor snaps onto the element matched by the rule's selector:
+
+```tsx
+const theme: CursorTheme = {
+  variants: {
+    magnetic: {
+      // While snapped the cursor covers the element,
+      // so give it a translucent style
+      style: {
+        backgroundColor: 'rgba(234, 67, 99, 0.15)',
+      },
+    },
+  },
+  rules: [
+    {
+      selector: '.snap-target',
+      variant: 'magnetic',
+      snap: true,
+    },
+  ],
+};
+
+<Cursor theme={theme} />;
+```
+
+> While snapped, the cursor's `width`, `height` and `borderRadius` are derived from the element — the variant still controls everything else (color, opacity, content...). Since the cursor renders **above** the element, prefer translucent backgrounds.
+
+## <a name="try-it"></a>Try it
+
+<div className="flex flex-wrap gap-4 not-prose my-6">
+  <button className="snap-target rounded-md border px-4 py-2" type="button">
+    Snap me
+  </button>
+  <button className="snap-target rounded-full border px-4 py-2" type="button">
+    Round corners follow
+  </button>
+  <button className="snap-target border px-4 py-2" type="button">
+    Sharp too
+  </button>
+</div>
+
+## <a name="options"></a>Options
+
+Pass an object instead of `true` to tune the effect:
+
+```tsx
+{
+  selector: '.snap-target',
+  variant: 'magnetic',
+  snap: {
+    padding: 8,
+    radius: 'auto',
+    magnetism: 0.15,
+  },
+}
+```
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>padding</td>
+      <td>number</td>
+      <td>8</td>
+      <td>Extra space between the element and the cursor edge, in px</td>
+    </tr>
+    <tr>
+      <td>radius</td>
+      <td>number | 'auto'</td>
+      <td>'auto'</td>
+      <td>Border radius of the snapped cursor. 'auto' derives it from the element's own radius (concentric corners)</td>
+    </tr>
+    <tr>
+      <td>magnetism</td>
+      <td>number</td>
+      <td>0.15</td>
+      <td>How much the cursor drifts toward the pointer while snapped, from 0 (locked) to 1 (free)</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a name="accessibility"></a>Accessibility
+
+When the user has `prefers-reduced-motion` enabled, the cursor skips the trailing spring and morph animations and sticks directly to the pointer.

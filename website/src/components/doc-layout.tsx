@@ -6,10 +6,11 @@ const TableItem: React.FC<{
   href: string;
   children?: React.ReactNode;
 }> = ({ children, href }) => (
-  <Link to={href}>
-    <a className="rounded px-3 py-1.5 transition-colors duration-200 relative block text-muted-foreground hover:text-primary">
-      {children}
-    </a>
+  <Link
+    to={href}
+    className="snap-target rounded px-3 py-1.5 transition-colors duration-200 relative block text-muted-foreground hover:text-primary"
+  >
+    {children}
   </Link>
 );
 
@@ -49,6 +50,7 @@ export function DocsLayout() {
                 <TableHeader>Guides</TableHeader>
 
                 <TableItem href="/docs/styling">Styling</TableItem>
+                <TableItem href="/docs/snap">Magnetic Snap</TableItem>
               </div>
             </nav>
 

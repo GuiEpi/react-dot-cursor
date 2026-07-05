@@ -37,9 +37,11 @@
 
 - 🚀 Easy to use
 - 🔍 Auto-detects content types
+- 🧲 Magnetic snap onto elements
 - 🚫 Respects disabled attribute
 - 🔠 Scales with text size
 - 🎥 Animated with motion
+- ♿ Respects reduced motion preference
 - 🎨 Customizable
 
 ## Installation
@@ -79,6 +81,27 @@ Then remove the default cursor with CSS:
   cursor: none !important;
 }
 ```
+
+## Magnetic Snap
+
+Make the cursor snap onto elements through a theme rule — it stretches to wrap the element and gently drifts toward the pointer:
+
+```tsx
+import { Cursor, CursorTheme } from 'react-dot-cursor';
+
+const theme: CursorTheme = {
+  variants: {
+    magnetic: {
+      style: { backgroundColor: 'rgba(234, 67, 99, 0.15)' },
+    },
+  },
+  rules: [{ selector: '.snap-target', variant: 'magnetic', snap: true }],
+};
+
+<Cursor theme={theme} />;
+```
+
+See it live on the [documentation sidebar](https://react-dot-cursor.guics.st/docs/snap).
 
 ## Documentation
 

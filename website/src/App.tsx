@@ -6,9 +6,16 @@ import { DocsLayout } from './components/doc-layout';
 import Index from './pages/docs/index.mdx';
 import Styling from './pages/docs/styling.mdx';
 import CursorDoc from './pages/docs/cursor.mdx';
+import SnapDoc from './pages/docs/snap.mdx';
 
 const theme: CursorTheme = {
   variants: {
+    magnetic: {
+      // translucent so the snapped element stays visible under the cursor
+      style: {
+        backgroundColor: 'rgba(234, 67, 99, 0.15)',
+      },
+    },
     documentation: {
       style: {
         display: 'flex',
@@ -33,6 +40,12 @@ const theme: CursorTheme = {
       variant: 'documentation',
       priority: 1,
     },
+    {
+      selector: '.snap-target',
+      variant: 'magnetic',
+      priority: 2,
+      snap: true,
+    },
   ],
 };
 
@@ -46,6 +59,7 @@ function App() {
           <Route index element={<Index />} />
           <Route path="cursor" element={<CursorDoc />} />
           <Route path="styling" element={<Styling />} />
+          <Route path="snap" element={<SnapDoc />} />
         </Route>
       </Routes>
     </ThemeProvider>
