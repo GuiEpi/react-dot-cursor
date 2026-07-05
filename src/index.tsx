@@ -12,11 +12,8 @@ const DEFAULT_SNAP: Required<SnapOptions> = {
   radius: 'auto',
   magnetism: 0.15,
   pull: 0,
+  margin: 6,
 };
-
-// Subtle built-in attraction: the snap engages (and lets go) this many px
-// around the element's border
-const SNAP_MARGIN = 6;
 
 // Opacity of the default snap overlay, derived from the cursor color
 const SNAP_OVERLAY_ALPHA = 0.15;
@@ -365,7 +362,7 @@ const Cursor: React.FC<CursorProps> = ({
 
       // Keep the snap while the pointer is still within its margin of the element
       const activeSnap = snapRef.current;
-      if (activeSnap && isNearRect(activeSnap.rect, SNAP_MARGIN, px, py)) return;
+      if (activeSnap && isNearRect(activeSnap.rect, activeSnap.options.margin, px, py)) return;
 
       clearSnap();
       if (isDisabled(target)) {
@@ -390,12 +387,23 @@ const Cursor: React.FC<CursorProps> = ({
     [applyTarget],
   );
 
+  // Largest margin among snap rules: how far around the pointer we probe
+  const maxSnapMargin = useMemo(() => {
+    let max = 0;
+    for (const rule of theme.rules ?? []) {
+      if (!rule.snap) continue;
+      max = Math.max(max, rule.snap === true ? DEFAULT_SNAP.margin : (rule.snap.margin ?? DEFAULT_SNAP.margin));
+    }
+    return max;
+  }, [theme.rules]);
+
   const hasSnapRules = useMemo(() => theme.rules?.some((rule) => rule.snap) ?? false, [theme.rules]);
 
   /** Hit-test a small ring around the pointer so the snap engages just before the border is touched */
   const probeProximity = useCallback(
     (px: number, py: number) => {
-      const m = SNAP_MARGIN;
+      const m = maxSnapMargin;
+      if (m <= 0) return;
       const d = m * Math.SQRT1_2;
       const probes: Array<[number, number]> = [
         [px + m, py],
@@ -414,14 +422,16 @@ const Cursor: React.FC<CursorProps> = ({
         const match = findMatchingRule(el);
         if (!match?.rule.snap) continue;
 
-        if (isNearRect(match.element.getBoundingClientRect(), SNAP_MARGIN, px, py)) {
+        // Engage only within this rule's own margin
+        const margin = match.rule.snap === true ? DEFAULT_SNAP.margin : (match.rule.snap.margin ?? DEFAULT_SNAP.margin);
+        if (isNearRect(match.element.getBoundingClientRect(), margin, px, py)) {
           setCurrentVariant(match.rule.variant);
           enterSnap(match.element, match.rule.snap);
           return;
         }
       }
     },
-    [findMatchingRule, enterSnap],
+    [findMatchingRule, enterSnap, maxSnapMargin],
   );
 
   const handleMouseOut = useCallback(
@@ -446,7 +456,7 @@ const Cursor: React.FC<CursorProps> = ({
       if (activeSnap) {
         // The margin boundary can be crossed without a mouseover firing
         // (moving within the same background element), so check it here too
-        if (!isNearRect(activeSnap.rect, SNAP_MARGIN, e.clientX, e.clientY)) {
+        if (!isNearRect(activeSnap.rect, activeSnap.options.margin, e.clientX, e.clientY)) {
           const under = document.elementFromPoint(e.clientX, e.clientY);
           if (under instanceof HTMLElement) {
             applyTarget(under, e.clientX, e.clientY);
@@ -470,9 +480,9 @@ const Cursor: React.FC<CursorProps> = ({
     const handleClick = (e: MouseEvent) => {
       const activeSnap = snapRef.current;
       if (!activeSnap) return;
-      const { element, rect } = activeSnap;
+      const { element, rect, options } = activeSnap;
       if (e.target instanceof Node && element.contains(e.target)) return; // the click already hit it
-      if (isNearRect(rect, SNAP_MARGIN, e.clientX, e.clientY)) {
+      if (isNearRect(rect, options.margin, e.clientX, e.clientY)) {
         element.click();
       }
     };

@@ -31,6 +31,8 @@ export interface SnapOptions {
   magnetism?: number;
   /** How much the element itself is pulled toward the pointer while snapped, from 0 (static) to 1 (glued to the pointer). Defaults to 0 */
   pull?: number;
+  /** Attraction margin around the element (px): the snap engages and releases this far from its border. Clicks in this zone activate the element. Defaults to 6 */
+  margin?: number;
 }
 
 /** Defines a rule for when to apply a specific cursor variant */
