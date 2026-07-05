@@ -58,12 +58,21 @@ const theme: CursorTheme = {
   ],
 };
 
-// Reset the scroll position when navigating to another page
+// Reset the scroll position when navigating to another page,
+// or scroll to the anchor when the URL has one
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
+    if (hash) {
+      const name = hash.slice(1);
+      const anchor = document.getElementById(name) ?? document.querySelector(`a[name="${name}"]`);
+      if (anchor) {
+        anchor.scrollIntoView();
+        return;
+      }
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 }
 

@@ -1,6 +1,14 @@
 import { Link, NavLink, Outlet } from 'react-router';
+import { MDXProvider } from '@mdx-js/react';
 import ReactDotCursorLogo from '/react-dot-cursor.svg';
 import { Footer } from './footer';
+
+// Internal links in MDX pages must go through the SPA router,
+// a native <a> would trigger a full page reload
+const mdxComponents = {
+  a: ({ href = '', ...rest }: React.ComponentProps<'a'>) =>
+    href.startsWith('/') ? <Link to={href} {...rest} /> : <a href={href} {...rest} />,
+};
 
 const TableItem: React.FC<{
   href: string;
@@ -58,7 +66,9 @@ export function DocsLayout() {
             </nav>
 
             <main className="col-span-4 w-full prose prose-zinc dark:prose-invert flex-1">
-              <Outlet />
+              <MDXProvider components={mdxComponents}>
+                <Outlet />
+              </MDXProvider>
             </main>
           </div>
         </div>
