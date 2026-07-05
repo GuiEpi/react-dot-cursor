@@ -42,7 +42,7 @@ const defaultVariants: Record<CursorType, CursorVariant> = {
   default: {
     style: {
       scale: 1,
-      borderRadius: '50%',
+      borderRadius: 8,
       width: 16,
       height: 16,
     },
@@ -50,7 +50,7 @@ const defaultVariants: Record<CursorType, CursorVariant> = {
   hover: {
     style: {
       scale: 1,
-      borderRadius: '50%',
+      borderRadius: 15,
       width: 30,
       height: 30,
     },
@@ -60,13 +60,13 @@ const defaultVariants: Record<CursorType, CursorVariant> = {
       scale: 1,
       width: 3,
       height: fontSize,
-      borderRadius: '1rem',
+      borderRadius: 2,
     },
   },
   disabled: {
     style: {
       scale: 1,
-      borderRadius: '50%',
+      borderRadius: 6,
       opacity: 0.5,
       width: 12,
       height: 12,
@@ -89,6 +89,27 @@ It will adjust its appearance based on the element being hovered:
 - Interactive elements: larger dot
 - Text: vertical bar that matches text height
 - Disabled elements: semi-transparent dot
+
+### <a name="see-it-live"></a>See it live
+
+Hover each element and watch the cursor adapt. No configuration involved, this is all default behavior:
+
+<div className="flex flex-wrap items-center gap-4 not-prose my-6">
+  <button className="rounded-md border px-4 py-2" type="button">
+    A button
+  </button>
+  <a className="underline underline-offset-4" href="#see-it-live">
+    A link
+  </a>
+  <button className="rounded-md border px-4 py-2" type="button" disabled>
+    Disabled
+  </button>
+  <div className="rounded-md border border-dashed px-4 py-2" role="button">
+    role="button"
+  </div>
+  <span className="text-xl">Large text</span>
+  <span className="text-xs">tiny text</span>
+</div>
 
 ## <a name="variants-styling"></a>Variants Styling
 

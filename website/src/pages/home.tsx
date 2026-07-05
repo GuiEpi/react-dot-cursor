@@ -41,7 +41,7 @@ export function Home() {
         {/*<div
           className="snap-target flex items-center justify-center rounded-xl border-2 border-dashed border-muted-foreground/40 my-8 h-40 w-full max-w-xl text-muted-foreground select-none"
         >
-          Snap playground — hover me
+          Snap playground, hover me
         </div>*/}
         <button className="snap-pull border-none bg-transparent text-2xl text-foreground mb-8" type="button">
           {'< Appearance'}

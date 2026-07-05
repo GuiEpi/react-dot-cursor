@@ -50,7 +50,7 @@ const Cursor: React.FC<CursorProps> = ({
   // Three position modes:
   //  - 'free':    the cursor IS the pointer, written 1:1, never smoothed
   //  - 'snap':    the cursor is locked on the element and only follows the
-  //               magnetic drift target, through a spring — raw mouse movement
+  //               magnetic drift target, through a spring: raw mouse movement
   //               never leaks into the position
   //  - 'release': leaving a snap, the spring glides back to the pointer, then
   //               hands over to direct tracking once it has caught up

@@ -29,7 +29,7 @@ const theme: CursorTheme = {
 <Cursor theme={theme} />;
 ```
 
-> While snapped, the cursor's `width`, `height` and `borderRadius` are derived from the element — the variant still controls everything else (color, opacity, content...). Since the cursor renders **above** the element, prefer translucent backgrounds.
+> While snapped, the cursor's `width`, `height` and `borderRadius` are derived from the element. The variant still controls everything else (color, opacity, content...). Since the cursor renders **above** the element, prefer translucent backgrounds.
 
 ## <a name="try-it"></a>Try it
 
@@ -40,10 +40,12 @@ const theme: CursorTheme = {
   <button className="snap-target rounded-full border px-4 py-2" type="button">
     Round corners follow
   </button>
-  <button className="snap-target border px-4 py-2" type="button">
-    Sharp too
+  <button className="snap-pull rounded-md border px-4 py-2" type="button">
+    Magnetic pull: I move too
   </button>
 </div>
+
+> The third button uses [`pull`](#options): the element itself is drawn toward the pointer while snapped.
 
 ## <a name="options"></a>Options
 
