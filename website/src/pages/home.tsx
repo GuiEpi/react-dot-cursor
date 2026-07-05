@@ -38,6 +38,14 @@ export function Home() {
             </a>
           </Button>
         </div>
+        {/*<div
+          className="snap-target flex items-center justify-center rounded-xl border-2 border-dashed border-muted-foreground/40 my-8 h-40 w-full max-w-xl text-muted-foreground select-none"
+        >
+          Snap playground — hover me
+        </div>*/}
+        <button className="snap-pull border-none bg-transparent text-2xl text-foreground mb-8" type="button">
+          {'< Appearance'}
+        </button>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-12">
           <FeatureItem text="Easy to use" />
           <FeatureItem text="Auto-detects content types" />

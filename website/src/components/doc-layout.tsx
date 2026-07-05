@@ -8,7 +8,7 @@ const TableItem: React.FC<{
 }> = ({ children, href }) => (
   <Link
     to={href}
-    className="snap-target rounded px-3 py-1.5 transition-colors duration-200 relative block text-muted-foreground hover:text-primary"
+    className="snap-nav rounded px-3 py-1.5 transition-colors duration-200 relative block text-muted-foreground hover:text-primary"
   >
     {children}
   </Link>

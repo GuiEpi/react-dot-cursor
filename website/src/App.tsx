@@ -46,6 +46,20 @@ const theme: CursorTheme = {
       priority: 2,
       snap: true,
     },
+    {
+      // sidebar links are already wide: tighter wrap
+      selector: '.snap-nav',
+      variant: 'magnetic',
+      priority: 2,
+      snap: { padding: 3 },
+    },
+    {
+      // the element itself follows the pointer
+      selector: '.snap-pull',
+      variant: 'magnetic',
+      priority: 2,
+      snap: { pull: 0.1 },
+    },
   ],
 };
 
