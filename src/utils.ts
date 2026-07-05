@@ -7,7 +7,7 @@ export const isMobile = (): boolean => {
 
 /** Check if the target is an interactive element */
 export const isInteractive = (target: HTMLElement): boolean => {
-  if (INTERACTIVE_ELEMENTS.includes(target.tagName as any)) {
+  if ((INTERACTIVE_ELEMENTS as readonly string[]).includes(target.tagName)) {
     return true;
   }
   // Check interactions via a role or an 'onclick' event
@@ -28,9 +28,5 @@ export const isInteractive = (target: HTMLElement): boolean => {
 
 /** Check if the target is a text element */
 export const isText = (target: HTMLElement): boolean => {
-  if (TEXT_ELEMENTS.includes(target.tagName as any)) {
-    return true;
-  }
-
-  return false;
+  return (TEXT_ELEMENTS as readonly string[]).includes(target.tagName);
 };
