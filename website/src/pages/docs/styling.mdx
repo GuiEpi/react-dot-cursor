@@ -75,41 +75,64 @@ const defaultVariants: Record<CursorType, CursorVariant> = {
 };
 ```
 
-It automatically detects and responds to:
+The cursor automatically detects the hovered element (including through its children) and picks the matching variant. Hover the last column to feel each one, no configuration involved:
 
-- Interactive elements (buttons, links, inputs)
-- Text elements
-- Disabled elements
-- Elements with `role="button"` or `role="link"`
-- Elements with click handlers
-
-It will adjust its appearance based on the element being hovered:
-
-- Regular elements: small dot
-- Interactive elements: larger dot
-- Text: vertical bar that matches text height
-- Disabled elements: semi-transparent dot
-
-### <a name="see-it-live"></a>See it live
-
-Hover each element and watch the cursor adapt. No configuration involved, this is all default behavior:
-
-<div className="flex flex-wrap items-center gap-4 not-prose my-6">
-  <button className="rounded-md border px-4 py-2" type="button">
-    A button
-  </button>
-  <a className="underline underline-offset-4" href="#see-it-live">
-    A link
-  </a>
-  <button className="rounded-md border px-4 py-2" type="button" disabled>
-    Disabled
-  </button>
-  <div className="rounded-md border border-dashed px-4 py-2" role="button">
-    role="button"
-  </div>
-  <span className="text-xl">Large text</span>
-  <span className="text-xs">tiny text</span>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>Triggered by</th>
+      <th>Cursor</th>
+      <th>Try it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>hover</td>
+      <td>Interactive elements: buttons, links, inputs, `role="button"` / `role="link"`, click handlers</td>
+      <td>Larger dot</td>
+      <td>
+        <div className="flex flex-wrap items-center gap-3 not-prose">
+          <button className="rounded-md border px-3 py-1.5" type="button">
+            A button
+          </button>
+          <div className="rounded-md border border-dashed px-3 py-1.5" role="button">
+            role="button"
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>Text elements: paragraphs, headings, spans, list items...</td>
+      <td>Vertical bar matching the text height</td>
+      <td>
+        <div className="flex items-baseline gap-3 not-prose">
+          <span className="text-xl">Large text</span>
+          <span className="text-xs">tiny text</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>Disabled elements, including their children</td>
+      <td>Semi-transparent smaller dot</td>
+      <td>
+        <button className="rounded-md border px-3 py-1.5 opacity-60 not-prose" type="button" disabled>
+          Disabled
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td>default</td>
+      <td>Everything else</td>
+      <td>Small dot</td>
+      <td>
+        <div className="inline-block rounded-md border border-dotted px-3 py-1.5 not-prose">A plain div</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## <a name="variants-styling"></a>Variants Styling
 
