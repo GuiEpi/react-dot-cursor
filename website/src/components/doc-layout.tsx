@@ -1,16 +1,28 @@
-import { Link, Outlet } from 'react-router';
+import { Link, NavLink, Outlet } from 'react-router';
+import { MDXProvider } from '@mdx-js/react';
 import ReactDotCursorLogo from '/react-dot-cursor.svg';
 import { Footer } from './footer';
+
+// Internal links in MDX pages must go through the SPA router,
+// a native <a> would trigger a full page reload
+const mdxComponents = {
+  a: ({ href = '', ...rest }: React.ComponentProps<'a'>) =>
+    href.startsWith('/') ? <Link to={href} {...rest} /> : <a href={href} {...rest} />,
+};
 
 const TableItem: React.FC<{
   href: string;
   children?: React.ReactNode;
 }> = ({ children, href }) => (
-  <Link to={href}>
-    <a className="rounded px-3 py-1.5 transition-colors duration-200 relative block text-muted-foreground hover:text-primary">
-      {children}
-    </a>
-  </Link>
+  <NavLink
+    to={href}
+    end
+    className={({ isActive }) =>
+      `snap-nav rounded px-3 py-1.5 relative block ${isActive ? 'bg-(--cursor-color)/10 text-foreground' : 'text-muted-foreground'}`
+    }
+  >
+    {children}
+  </NavLink>
 );
 
 const TableHeader: React.FC<{
@@ -49,11 +61,14 @@ export function DocsLayout() {
                 <TableHeader>Guides</TableHeader>
 
                 <TableItem href="/docs/styling">Styling</TableItem>
+                <TableItem href="/docs/snap">Magnetic Snap</TableItem>
               </div>
             </nav>
 
             <main className="col-span-4 w-full prose prose-zinc dark:prose-invert flex-1">
-              <Outlet />
+              <MDXProvider components={mdxComponents}>
+                <Outlet />
+              </MDXProvider>
             </main>
           </div>
         </div>

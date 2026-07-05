@@ -35,8 +35,14 @@ This component will render the cursor.
     <tr>
       <td>[defaultColor](#default-color-prop)</td>
       <td>string</td>
-      <td>auto</td>
+      <td>'auto'</td>
       <td>Default color in valid CSS format</td>
+    </tr>
+    <tr>
+      <td>[hideNativeCursor](#hide-native-cursor-prop)</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Hide the native cursor while mounted</td>
     </tr>
   </tbody>
 </table>
@@ -126,4 +132,12 @@ Change the default cursor color using any **valid CSS color format**. By default
 // Other CSS color functions
 <Cursor defaultColor="lab(50% 20 -30)" />
 <Cursor defaultColor="lch(50% 50 130)" />
+```
+
+### <a name="hide-native-cursor-prop"></a>`hideNativeCursor` Prop
+
+While mounted, the component injects `* { cursor: none !important }` so the native cursor disappears, and removes it on unmount. Set to `false` if you prefer to manage that CSS yourself. Defaults to `true`.
+
+```jsx
+<Cursor hideNativeCursor={false} />
 ```

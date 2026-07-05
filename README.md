@@ -37,9 +37,11 @@
 
 - 🚀 Easy to use
 - 🔍 Auto-detects content types
+- 🧲 Magnetic snap onto elements
 - 🚫 Respects disabled attribute
 - 🔠 Scales with text size
 - 🎥 Animated with motion
+- ♿ Respects reduced motion preference
 - 🎨 Customizable
 
 ## Installation
@@ -72,13 +74,23 @@ const App = () => {
 };
 ```
 
-Then remove the default cursor with CSS:
+That's it: the native cursor is hidden automatically while the component is mounted (opt out with `hideNativeCursor={false}` if you prefer to manage that CSS yourself).
 
-```css
-* {
-  cursor: none !important;
-}
+## Magnetic Snap
+
+Make the cursor snap onto elements through a theme rule: it stretches to wrap the element with a translucent version of your cursor color, gently drifts toward the pointer, and can even pull the element along (`snap: { pull: 0.1 }`):
+
+```tsx
+import { Cursor, CursorTheme } from 'react-dot-cursor';
+
+const theme: CursorTheme = {
+  rules: [{ selector: '.snap-target', variant: 'default', snap: true }],
+};
+
+<Cursor theme={theme} />;
 ```
+
+See it live on the [documentation sidebar](https://react-dot-cursor.guics.st/docs/snap).
 
 ## Documentation
 

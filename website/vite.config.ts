@@ -21,6 +21,8 @@ export default defineConfig({
       enforce: 'pre',
       ...mdx({
         rehypePlugins: [rehypeHighlight],
+        // let MDXProvider substitute components (internal links -> react-router)
+        providerImportSource: '@mdx-js/react',
       }),
     },
     react(),

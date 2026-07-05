@@ -7,8 +7,8 @@ export function Footer() {
   return (
     <footer className="flex items-center justify-center flex-col my-8">
       <p>Made with 🩷 by GuiEpi</p>
-      <Link className="flex items-center space-x-2" to="/">
-        <img src={ReactDotCursorLogo} alt="Go to Homepage" width={24} height={24} />© {currentYear}{' '}
+      <Link className="flex items-center gap-2" to="/">
+        <img src={ReactDotCursorLogo} alt="Go to Homepage" width={24} height={24} />© {currentYear}
         <span className="font-bold">react-dot-cursor</span>
       </Link>
     </footer>

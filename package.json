@@ -19,6 +19,7 @@
     "build:website": "pnpm --filter website build",
     "dev": "pnpm --filter website dev",
     "format": "prettier --write .",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -51,11 +52,17 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "eslint": "^10.6.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.7.0",
     "prettier": "^3.4.2",
     "tsup": "^8.3.5",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.62.1"
   },
   "packageManager": "pnpm@10.34.4",
   "pnpm": {

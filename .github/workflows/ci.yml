@@ -29,5 +29,5 @@ jobs:
       - name: Build website
         run: pnpm run build:website
 
-      - name: Lint website
-        run: pnpm --filter website lint
+      - name: Lint
+        run: pnpm lint

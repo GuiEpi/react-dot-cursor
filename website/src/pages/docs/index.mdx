@@ -30,9 +30,16 @@ const App = () => {
 };
 ```
 
-Then remove the default cursor with CSS.
+That's it: the native cursor is hidden automatically while the component is mounted, and comes back if it unmounts.
+
+If you prefer to manage that CSS yourself, opt out with `hideNativeCursor`:
+
+```tsx
+<Cursor hideNativeCursor={false} />
+```
 
 ```css
+/* then hide it on your own terms */
 * {
   cursor: none !important;
 }

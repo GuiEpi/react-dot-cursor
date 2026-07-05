@@ -83,7 +83,6 @@
 @layer base {
   * {
     @apply border-border;
-    @apply cursor-none;
   }
   body {
     @apply bg-background text-foreground;

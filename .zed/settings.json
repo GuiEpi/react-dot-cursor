@@ -1,0 +1,20 @@
+{
+  // Use the workspace TypeScript (6.x) instead of the editor's bundled one,
+  // so tsconfig options like ignoreDeprecations "6.0" are understood
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "tsdk": "node_modules/typescript/lib"
+        }
+      }
+    },
+    "typescript-language-server": {
+      "initialization_options": {
+        "tsserver": {
+          "path": "node_modules/typescript/lib/tsserver.js"
+        }
+      }
+    }
+  }
+}
