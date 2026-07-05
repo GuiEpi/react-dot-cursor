@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { ThemeProvider } from './providers/theme-provider';
-import { Route, Routes } from 'react-router';
+import { Route, Routes, useLocation } from 'react-router';
 import { Cursor, CursorTheme } from 'react-dot-cursor';
 import { Home } from './pages/home';
 import { DocsLayout } from './components/doc-layout';
@@ -57,10 +58,20 @@ const theme: CursorTheme = {
   ],
 };
 
+// Reset the scroll position when navigating to another page
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="react-dot-cursor-ui-theme">
       <Cursor theme={theme} />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/docs" element={<DocsLayout />}>

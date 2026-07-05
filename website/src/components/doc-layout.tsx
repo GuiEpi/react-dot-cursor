@@ -10,7 +10,7 @@ const TableItem: React.FC<{
     to={href}
     end
     className={({ isActive }) =>
-      `snap-nav rounded px-3 py-1.5 relative block ${isActive ? 'font-semibold text-primary' : 'text-muted-foreground'}`
+      `snap-nav rounded px-3 py-1.5 relative block ${isActive ? 'bg-(--cursor-color)/10 text-foreground' : 'text-muted-foreground'}`
     }
   >
     {children}
