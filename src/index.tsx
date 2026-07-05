@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useReducedMotion } from 'motion/react';
 import { CursorProps, CursorRule, CursorVariant, CursorType, SnapOptions } from './types';
-import { isMobile, isInteractive, isText } from './utils';
+import { isMobile, isDisabled, isInteractive, isText } from './utils';
 
 const DEFAULT_SPRING = { stiffness: 450, damping: 45 };
 
@@ -333,7 +333,7 @@ const Cursor: React.FC<CursorProps> = ({
       if (activeSnap && isNearRect(activeSnap.rect, SNAP_MARGIN, px, py)) return;
 
       clearSnap();
-      if (target.hasAttribute('disabled')) {
+      if (isDisabled(target)) {
         setCurrentVariant('disabled');
         // Prioritize interactive elements
       } else if (isInteractive(target)) {

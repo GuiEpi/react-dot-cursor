@@ -1,29 +1,23 @@
 import { INTERACTIVE_ELEMENTS, TEXT_ELEMENTS } from './constants';
 
+// Matches interactive elements and containers: tags, roles or click handlers.
+// closest() with this selector also catches children of interactive elements
+// (e.g. the text node wrapper inside a button)
+const INTERACTIVE_SELECTOR = [...INTERACTIVE_ELEMENTS, '[role="button"]', '[role="link"]', '[onclick]'].join(', ');
+
 /** Check if the user is on a mobile device */
 export const isMobile = (): boolean => {
   return /iPhone|iPad|iPod|Android|WebOS/i.test(navigator.userAgent);
 };
 
-/** Check if the target is an interactive element */
-export const isInteractive = (target: HTMLElement): boolean => {
-  if ((INTERACTIVE_ELEMENTS as readonly string[]).includes(target.tagName)) {
-    return true;
-  }
-  // Check interactions via a role or an 'onclick' event
-  if (
-    target.getAttribute('role') === 'button' ||
-    target.getAttribute('role') === 'link' ||
-    target.hasAttribute('onclick')
-  ) {
-    return true;
-  }
-  // Check if the element belongs to an interactive container
-  if (target.closest('A') || target.closest('BUTTON')) {
-    return true;
-  }
+/** Check if the target is, or belongs to, a disabled element */
+export const isDisabled = (target: HTMLElement): boolean => {
+  return target.closest('[disabled]') !== null;
+};
 
-  return false;
+/** Check if the target is, or belongs to, an interactive element */
+export const isInteractive = (target: HTMLElement): boolean => {
+  return target.closest(INTERACTIVE_SELECTOR) !== null;
 };
 
 /** Check if the target is a text element */
