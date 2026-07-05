@@ -429,6 +429,19 @@ const Cursor: React.FC<CursorProps> = ({
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
 
+    // The cursor visually wraps the snapped element while the real pointer
+    // can still be in the attraction margin around it: forward those clicks
+    // to the element so what the cursor shows is what a click does
+    const handleClick = (e: MouseEvent) => {
+      const activeSnap = snapRef.current;
+      if (!activeSnap) return;
+      const { element, rect } = activeSnap;
+      if (e.target instanceof Node && element.contains(e.target)) return; // the click already hit it
+      if (isNearRect(rect, SNAP_MARGIN, e.clientX, e.clientY)) {
+        element.click();
+      }
+    };
+
     // The snapped element's viewport position changes on scroll; re-measure without re-rendering
     const handleScroll = () => {
       const activeSnap = snapRef.current;
@@ -442,6 +455,7 @@ const Cursor: React.FC<CursorProps> = ({
     window.addEventListener('mouseout', handleMouseOut, { passive: true });
     window.addEventListener('mousedown', handleMouseDown, { passive: true });
     window.addEventListener('mouseup', handleMouseUp, { passive: true });
+    window.addEventListener('click', handleClick, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true, capture: true });
 
     return () => {
@@ -450,6 +464,7 @@ const Cursor: React.FC<CursorProps> = ({
       window.removeEventListener('mouseout', handleMouseOut);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('click', handleClick);
       window.removeEventListener('scroll', handleScroll, { capture: true });
       // Unmounting while snapped: don't leave a pulled element displaced
       if (snapRef.current) releasePull(snapRef.current);
