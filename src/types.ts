@@ -29,6 +29,8 @@ export interface SnapOptions {
   radius?: number | 'auto';
   /** How much the cursor drifts toward the pointer while snapped, from 0 (locked on the element) to 1 (follows the pointer). Defaults to 0.15 */
   magnetism?: number;
+  /** How much the element itself is pulled toward the pointer while snapped, from 0 (static) to 1 (glued to the pointer). Defaults to 0 */
+  pull?: number;
 }
 
 /** Defines a rule for when to apply a specific cursor variant */
@@ -61,7 +63,7 @@ export interface CursorProps {
   scaleOnClick?: boolean;
   /** Default color in valid CSS format (e.g., 'hsl(240 10% 3.9%)', '#ff4081', 'rgb(255 64 129)', 'oklch(0.7 0.15 330)') */
   defaultColor?: string;
-  /** Spring configuration for the cursor position. Defaults to a snappy spring with a slight trail */
+  /** Spring driving the magnetic snap (enter, exit and drift). Free tracking is always 1:1. Defaults to \{ stiffness: 450, damping: 38 } */
   spring?: SpringOptions;
 }
 
