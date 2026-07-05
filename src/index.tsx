@@ -18,6 +18,19 @@ const DEFAULT_SNAP: Required<SnapOptions> = {
 // around the element's border
 const SNAP_MARGIN = 6;
 
+// Opacity of the default snap overlay, derived from the cursor color
+const SNAP_OVERLAY_ALPHA = 0.15;
+
+/** Derives a translucent version of a resolved CSS color */
+const toTranslucent = (color: string, alpha: number): string => {
+  const match = color.match(/^rgba?\(([^)]+)\)$/);
+  if (match) {
+    const [r, g, b] = match[1].split(',').map((part) => part.trim());
+    if (r && g && b) return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+  return `color-mix(in srgb, ${color} ${alpha * 100}%, transparent)`;
+};
+
 /** Whether the pointer is within `margin` px of the rect */
 const isNearRect = (rect: DOMRect, margin: number, px: number, py: number): boolean => {
   return px >= rect.left - margin && px <= rect.right + margin && py >= rect.top - margin && py <= rect.bottom + margin;
@@ -27,6 +40,8 @@ interface SnapState {
   element: HTMLElement;
   rect: DOMRect;
   radius: number;
+  /** Default translucent background while snapped, derived from the cursor color */
+  overlay?: string;
   options: Required<SnapOptions>;
 }
 
@@ -42,6 +57,7 @@ const Cursor: React.FC<CursorProps> = ({
   const [isClicking, setIsClicking] = useState(false);
   const [snap, setSnap] = useState<SnapState | null>(null);
   const contentRef = useRef<HTMLSpanElement>(null);
+  const morphRef = useRef<HTMLDivElement>(null);
   const [contentDimensions, setContentDimensions] = useState({ width: 0, height: 0 });
 
   // Transient values live in motion values / refs, not state: tracking the
@@ -249,7 +265,14 @@ const Cursor: React.FC<CursorProps> = ({
       // Moving directly from one snapped element to another: put the previous one back
       if (snapRef.current) releasePull(snapRef.current);
 
-      const state: SnapState = { element, rect, radius, options };
+      // Unless the variant sets its own backgroundColor, the snapped cursor
+      // uses a translucent version of its current color so the element stays
+      // visible underneath
+      const overlay = morphRef.current
+        ? toTranslucent(window.getComputedStyle(morphRef.current).backgroundColor, SNAP_OVERLAY_ALPHA)
+        : undefined;
+
+      const state: SnapState = { element, rect, radius, overlay, options };
       snapRef.current = state;
       // Coming from direct tracking: start the glide from the cursor's actual
       // spot. Coming from a release glide: continue from where the spring is.
@@ -481,12 +504,16 @@ const Cursor: React.FC<CursorProps> = ({
     const style = { ...currentVariantData?.style };
 
     if (snap) {
-      return {
+      const snapStyle = {
         ...style,
         width: snap.rect.width + snap.options.padding * 2,
         height: snap.rect.height + snap.options.padding * 2,
         borderRadius: snap.radius,
       };
+      if (snapStyle.backgroundColor === undefined && snap.overlay) {
+        snapStyle.backgroundColor = snap.overlay;
+      }
+      return snapStyle;
     }
 
     if (hasContent && (style.width === 'auto' || style.height === 'auto')) {
@@ -517,6 +544,7 @@ const Cursor: React.FC<CursorProps> = ({
     >
       {/* Morph layer: variant styles, snap dimensions and click scale */}
       <motion.div
+        ref={morphRef}
         className="react-dot-cursor"
         style={{
           x: '-50%',
